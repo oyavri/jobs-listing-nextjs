@@ -1,0 +1,102 @@
+.container {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  background: #eeeeee;
+  padding: 0;
+  box-sizing: content-box;
+  margin: 30px auto 30px auto ;
+  border-radius: 10px;
+  border: 4px solid;
+  border-color: #222831;
+  font: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+.title {
+  margin: 0;
+  padding: 20px;
+  background: #222831;
+  display: flex;
+  width: 100%;
+  color: #eeeeee;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.position {
+  margin: 0;
+  padding: 8px 20px 8px 20px;
+  width: 100%;
+  background: #393e46;
+  color: #eeeeee;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.experience {
+  background: #eeeeee;
+  margin: 0;
+  padding: 8px 20px 8px 20px;
+}
+
+.reqSkills {
+  background: #dddddd;
+  margin: 0;
+  padding: 8px 20px 8px 20px;
+}
+
+.info {
+  background: #eeeeee;
+  margin: 0;
+  padding: 8px 20px 8px 20px;
+}
+
+.schedule {
+  background: #dddddd;
+  margin: 0;
+  padding: 8px 20px 8px 20px;
+}
+
+.location {
+  background: #eeeeee;
+  margin: 0;
+  padding: 8px 20px 8px 20px;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: #eeeeee;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.displayOpened {
+  border-radius: 0 0 7px 7px;
+}
+
+.displayClosed {
+  border-radius: 0;
+}
+
+.titleDisplayOpened {
+  border-radius: 0;
+}
+
+.titleDisplayClosed {
+  border-radius: 0 0 5px 5px;
+}
