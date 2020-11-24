@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import fetch from 'next';
 import styles from '../styles/CreateListing.module.css';
-import { globalCounter } from '../utils/getSequentialNumber';
+
+const url = "http://localhost:5001/jobs-listing-app-db9cc/us-central1/jobsListing"
 
 export default function CreateListing() {
 
@@ -12,6 +12,8 @@ export default function CreateListing() {
   const [infoInput, setInfoInput] = useState('');
   const [scheduleInput, setScheduleInput] = useState('');
   const [locationInput, setLocationInput] = useState('');
+
+  const [buttonStatus, setButtonStatus] = useState(false);
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -37,6 +39,7 @@ export default function CreateListing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setButtonStatus(true);
 
     const submittedForm = {
       "title": title,
@@ -46,25 +49,36 @@ export default function CreateListing() {
       "jobInfo": infoInput,
       "workSchedule": scheduleInput,
       "location": locationInput,
-      "id": globalCounter.next().value,
+      "isOnline": true
     }
-    console.log(submittedForm);
 
-    try {
-      const res = await fetch('endpoint', {
-        method: 'post',
-        body: JSON.stringify(submittedForm)
-      })
+    const request = fetch(`${url}/createJobListing`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': 'no-cors',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(submittedForm)
+    })
 
-      if (res.status === 200) {
-        alert('Submission is successful!');
-      } else {
-        alert('Something went wrong.');
+    request.then(response => response.json())
+    .then((data) => {
+        alert(`${data.isSuccessful ? 'Creation of job listing is successful!': 'Something went wrong.'}`);
+        setTitle('');
+        setPositionInput('');
+        setExperienceInput('');
+        setReqSkillsInput('');
+        setInfoInput('');
+        setScheduleInput('');
+        setLocationInput('');
+        setButtonStatus(false);
       }
-    } catch (error) {
-      alert('Something went wrong.');
-      console.log(error);
-    }
+    )
+    .catch((err) => {
+        alert('Something went wrong');
+        alert(err);
+    })
   }
 
   return (
@@ -155,7 +169,7 @@ export default function CreateListing() {
             required 
             autoFocus />
         </fieldset>
-        <button className={styles.button} tabIndex='7'>
+        <button className={styles.button} disabled={buttonStatus} tabIndex='7'>
             Create Listing
         </button>
       </form>
