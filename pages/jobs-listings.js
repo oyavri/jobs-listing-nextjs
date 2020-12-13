@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import Listing from '../components/Listing';
 import { useEffect, useState } from 'react'
 
@@ -21,7 +21,7 @@ export default function JobsListings() {
     })
       .then(response => response.json())
       .then(data => {
-        setListings([...listings, ...data]);
+        setListings([...listings, ...data.response]);
       })
       .catch((err) => { alert(err) });
   }, []);
@@ -31,7 +31,6 @@ export default function JobsListings() {
       <Head>
         <title>Jobs Listings</title>
       </Head>
-      <Layout>
         {
           listings.map((jobListing) => {
             return (<Listing title={jobListing.title}
@@ -45,11 +44,8 @@ export default function JobsListings() {
             />)
           })
         }
-      </Layout>
     </div>
   )
 }
 
-/*
-
-*/
+JobsListings.Layout = Layout;

@@ -1,4 +1,4 @@
-import Header from './Header';
+import Header from '../components/Header';
 import styles from '../styles/Layout.module.css'
 
 export default function Layout ({ children }) {
